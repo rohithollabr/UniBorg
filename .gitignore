@@ -3,7 +3,10 @@ __pycache__
 
 *.session
 *.session-journal
+*.DB
+*.DB-journal
 data/
-config.py
+config.env
 sessions/
 
+stdplugins/tb_button.py

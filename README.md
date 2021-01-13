@@ -4,18 +4,46 @@ Pluggable [``asyncio``](https://docs.python.org/3/library/asyncio.html)
 [Telegram](https://telegram.org) userbot based on
 [Telethon](https://github.com/LonamiWebs/Telethon).
 
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+Mozilla Public License for more details.
+
+
 ## installing
 
-#### The Easy Way
+#### The Easiest Way
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+- Install Docker by following the [official docker docs](https://docs.docker.com/engine/install/debian/)
+
+- Start docker daemon [skip if already running]:
+```sh
+dockerd
+```
+- Build Docker image:
+```sh
+docker build . -t uniborg
+```
+- Run the image:
+```sh
+docker run uniborg
+```
+
+It is not recommended to use "sudo", while using Docker.
+GNU/Linux Permissions are highly customisable, and it is generally not required to have "ROOT" permission, ~~unless you know what you are doing~~.
+You can still install all the dependencies in your system [with ROOT permissions],
+but please be aware of the potential issues when doing so. The installed packages
+may conflict with the system package manager's installed packages, which can
+cause trouble down the road and errors when upgrading conflicting packages.
+**You have been warned.**
 
 #### The Legacy Way
 Simply clone the repository and run the main file:
 ```sh
 git clone https://github.com/udf/uniborg.git
 cd uniborg
-virtualenv -p /usr/bin/python3 venv
+python3 -m venv venv
 . ./venv/bin/activate
 pip install -r requirements.txt
 # <Create config.py with variables as given below>
@@ -87,13 +115,14 @@ a new file under the plugin directory to do the job:
 
 ```python
 # stdplugins/myplugin.py
-from telethon import events
-from uniborg.util import admin_cmd
-
-@borg.on(admin_cmd(pattern="hi"))
+@borg.on(slitu.admin_cmd(pattern="hi"))
 async def handler(event):
     await event.reply("hey")
 ```
+
+## disclaimer
+
+⚠️ This fork uses "requests" module in various places, instead of the async alternative. ⚠️
 
 
 ## learning
